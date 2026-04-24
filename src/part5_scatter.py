@@ -45,4 +45,4 @@ def scatter_pred_vs_actual(pred_universe):
     """Prediction_felony vs actual felony rearrest."""
     sns.lmplot(data=pred_universe, x='prediction_felony', y='y_felony')
     _save('scatter_pred_vs_actual')
-    print(Q2_ANSWER)git add src/part5_scatter.py
+    print(Q2_ANSWER)
