@@ -31,7 +31,7 @@ def bar_fta_by_sex(pred_universe):
 
 # 3. Plot a histogram of age_at_arrest
 def hist_age(pred_universe):
-    """Age-at-arrest distribution with default bins."""
+    """Age at arrest distribution with default bins."""
     plt.figure()
     sns.histplot(data=pred_universe, x='age_at_arrest').set(title='Age at Arrest')
     _save('hist_age')
@@ -39,7 +39,7 @@ def hist_age(pred_universe):
 
 # 4. Plot the same histogram, but create bins that represent the following age groups 
 def hist_age_grouped(pred_universe):
-    """Age-at-arrest distribution binned into 18-21, 21-30, 30-40, 40-100."""
+    """Age at arrest distribution binned into 18-21, 21-30, 30-40, 40-100."""
     plt.figure()
     sns.histplot(data=pred_universe, x='age_at_arrest',
                  bins=[18, 21, 30, 40, 100]).set(title='Age at Arrest (Grouped)')
