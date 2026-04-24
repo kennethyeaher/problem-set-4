@@ -7,6 +7,9 @@ PART 1: ETL
 import os
 import pandas as pd
 
+UNIVERSE_URL = 'https://www.dropbox.com/scl/fi/a2tpqpvkdc8n6advvkpt7/universe_lab9.csv?rlkey=839vsc25njgfftzakr34w2070&dl=1'
+EVENTS_URL = 'https://www.dropbox.com/scl/fi/n47jt4va049gh2o4bysjm/arrest_events_lab9.csv?rlkey=u66usya2xjgf8gk2acq7afk7m&dl=1'
+
 def create_directories(directories):
     """
     Creates the necessary directories for storing plots and data.
@@ -14,8 +17,7 @@ def create_directories(directories):
     Args:
         directories (list of str): A list of directory paths to create.
     """
-    
-    
+   
     for directory in directories:
         os.makedirs(directory, exist_ok=True)
 
@@ -30,11 +32,21 @@ def extract_transform():
         - `charge_counts_by_offense`: A dataframe with counts of charges aggregated by both charge degree and offense category
     """
     # Extracts arrest data CSVs into dataframes
-    pred_universe = pd.read_csv('https://www.dropbox.com/scl/fi/a2tpqpvkdc8n6advvkpt7/universe_lab9.csv?rlkey=839vsc25njgfftzakr34w2070&dl=1')
-    arrest_events = pd.read_csv('https://www.dropbox.com/scl/fi/n47jt4va049gh2o4bysjm/arrest_events_lab9.csv?rlkey=u66usya2xjgf8gk2acq7afk7m&dl=1')
+    pred_universe = pd.read_csv(UNIVERSE_URL)
+    arrest_events = pd.read_csv(EVENTS_URL)
 
     # Creates two additional dataframes using groupbys
     charge_counts = arrest_events.groupby(['charge_degree']).size().reset_index(name='count')
-    charge_counts_by_offense = arrest_events.groupby(['charge_degree', 'offense_category']).size().reset_index(name='count')
-    
-    return pred_universe, arrest_events, charge_counts, charge_counts_by_offense
+    charge_counts_by_offense = (
+        arrest_events.groupby(['charge_degree', 'offense_category']).size().reset_index(name='count')
+    )
+
+    felony_charge = (
+        arrest_events.groupby('arrest_id')['charge_degree']
+        .apply(lambda charges: (charges == 'felony').any())
+        .reset_index(name='has_felony_charge')
+    )
+    pred_universe = pred_universe.merge(felony_charge, on='arrest_id', how='left')
+
+
+    return pred_universe, arrest_events, charge_counts, charge_counts_by_offense, felony_charge
