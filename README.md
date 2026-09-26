@@ -1,5 +1,10 @@
 # Visualizing Arrest Data and Model Predictions
 
+![Python](docs/readme/badges/python-3776AB.svg)
+![Seaborn](docs/readme/badges/seaborn.svg)
+![Matplotlib](docs/readme/badges/matplotlib.svg)
+![pandas](docs/readme/badges/pandas-150458.svg)
+
 A coursework exploration of distributions, group comparisons, and model calibration using pandas, Seaborn, and Matplotlib. The plots put predicted rearrest probabilities beside observed outcomes so their relationship can be examined.
 
 ## My contribution
@@ -9,6 +14,16 @@ I extended the [course starter](https://github.com/gi11ikin/problem-set-4) with 
 ![Saved scatter plot of predicted felony rearrest probability against the observed binary outcome, with a fitted line.](data/part5_plots/scatter_pred_vs_actual.png)
 
 This is an existing committed output from the exercise. It is not a new evaluation, and the fitted line alone does not establish model calibration or fairness.
+
+## Reading the plot collection
+
+| Collection | Question |
+| --- | --- |
+| [Bar charts and histograms](data/part3_plots/) | How are failure to appear and age distributed in the sample? |
+| [Categorical comparisons](data/part4_plots/) | How do predicted probabilities vary with current charge type and observed outcomes? |
+| [Scatter plots](data/part5_plots/) | How do predictions relate to one another and to recorded rearrest? |
+
+The source keeps plot creation and written interpretation in separate functions. Read the interpretations as coursework observations about this dataset, with particular care around causal or fairness conclusions.
 
 ## Explore or run
 
