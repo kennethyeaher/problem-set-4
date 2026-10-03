@@ -61,7 +61,7 @@ Grading: We will look to make sure you've output the correct PNGs and print stat
 ## Author
 
 **Kenneth Yeaher**  
-Master of Information Management  
+MS in Human Computer Interaction  
 University of Maryland, College Park  
 [![LinkedIn: Kenneth Yeaher](https://img.shields.io/badge/LinkedIn-Kenneth_Yeaher-0A66C2?style=flat)](https://www.linkedin.com/in/kennethyeaher/)
 
